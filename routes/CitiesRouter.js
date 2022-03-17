@@ -13,11 +13,7 @@ const validations = require("../middleware/validationMiddleware");
  * @desc Show all cities
  * @access Public
  */
-router.get(
-  "/",
-
-  CitiesController.getCityList
-);
+router.get("/", CitiesController.getCityList);
 
 /**
  * @route GET /api/cities/:id
