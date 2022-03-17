@@ -12,6 +12,10 @@ const CommentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  cityName: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = Comment = mongoose.model("city", CommentSchema);
+module.exports = Comment = mongoose.model("comment", CommentSchema);

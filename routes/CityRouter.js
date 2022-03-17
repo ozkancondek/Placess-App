@@ -30,6 +30,6 @@ router.get("/forum", CityController.showAllComments);
  * @desc show comment for single city
  * @access Private
  */
-router.get("/forum/:id", CityController.getCommentsForCity);
+router.get("/forum/city", CityController.getCommentsForCity);
 
 module.exports = router;

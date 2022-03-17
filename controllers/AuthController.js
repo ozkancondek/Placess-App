@@ -16,11 +16,9 @@ exports.authRegister = async (req, res) => {
   //- check if user aldready registered
   const userData = await User.findOne({ email });
   if (userData) {
-    return res
-      .status(400)
-      .json({
-        errors: [{ message: "There is an another account on this email." }],
-      });
+    return res.status(400).json({
+      errors: [{ message: "There is an another account on this email." }],
+    });
   }
   //-crypt password
   const salt = await bcrypt.genSalt(10);

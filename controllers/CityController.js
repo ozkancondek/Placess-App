@@ -14,12 +14,12 @@ exports.addNewPlace = async (req, res) => {
 };
 
 exports.addComment = async (req, res) => {
-  const { comment, username, addDate } = req.body;
+  const { comment, username, cityName } = req.body;
   //save comment to db
   const newComment = new Comment({
     comment,
     username,
-    addDate,
+    cityName,
   });
   await newComment.save();
   res.send("comment added");
@@ -35,9 +35,11 @@ exports.showAllComments = async (req, res) => {
   }
 };
 exports.getCommentsForCity = async (req, res) => {
+  const { cityName } = req.body;
+
   try {
-    const SingleCityComments = await Comment.findOne({
-      _id: req.params.id,
+    const SingleCityComments = await Comment.find({
+      cityName: cityName,
     });
 
     if (!SingleCityComments) {
