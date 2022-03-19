@@ -1,15 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Cities } from "../pages/Cities";
-import { ClickCity } from "../pages/ClickCity";
-import { Forum } from "../pages/Forum";
+
 import { Home } from "../pages/Home";
-import { SignIn } from "../pages/Signin";
-import { SignUp } from "../pages/SignUp";
-import { YourChoices } from "../pages/YourChoices";
-import { useOut } from "../providers/MainProvider";
-import { Footer } from "./components/footer/Footer";
-import { Navi } from "./components/navbar/Navi";
 
 export const Router = () => {
   // const { isAuthenticated } = useOut();

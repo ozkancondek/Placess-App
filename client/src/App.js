@@ -1,15 +1,19 @@
-import { Router } from "./routes/Router";
-
 import { ThemeProvider, useTheme } from "./providers/ThemeProvider";
 import { BackgroundThemeContainer } from "./styles/Theme";
+import { Home } from "./pages/Home";
+import { Footer } from "./components/footer/Footer";
 
 const App = () => {
   const { theme } = useTheme();
 
   return (
-    <BackgroundThemeContainer theme={theme}>
-      <Router />
-    </BackgroundThemeContainer>
+    /*    <BackgroundThemeContainer theme={theme}>
+      <Home />
+    </BackgroundThemeContainer> */
+    <>
+      <Home />
+      <Footer />
+    </>
   );
 };
 
