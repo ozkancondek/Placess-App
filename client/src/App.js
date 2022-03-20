@@ -1,19 +1,30 @@
 import { ThemeProvider, useTheme } from "./providers/ThemeProvider";
 import { BackgroundThemeContainer } from "./styles/Theme";
 import { Home } from "./pages/Home";
-import { Footer } from "./components/footer/Footer";
+import { MainProvider, useOut } from "./providers/MainProvider";
+import { ApiProvider, useApi } from "./providers/ApiProvider";
+import { useEffect } from "react";
 
 const App = () => {
   const { theme } = useTheme();
+  /*   const { getAllCities } = useApi();
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        let res = await getAllCities();
+
+        console.log(res.cityList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, [getAllCities]); */
 
   return (
-    /*    <BackgroundThemeContainer theme={theme}>
+    <BackgroundThemeContainer theme={theme}>
       <Home />
-    </BackgroundThemeContainer> */
-    <>
-      <Home />
-      <Footer />
-    </>
+    </BackgroundThemeContainer>
   );
 };
 
@@ -30,7 +41,11 @@ const Main = () => (
     </ThemeProvider>
   </ErrorBoundary> */
   <ThemeProvider>
-    <App />
+    <MainProvider>
+      <ApiProvider>
+        <App />
+      </ApiProvider>
+    </MainProvider>
   </ThemeProvider>
 );
 

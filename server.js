@@ -2,6 +2,8 @@ const express = require("express");
 
 const connectDB = require("./models/connectDB");
 
+var cors = require("cors");
+
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +15,8 @@ connectDB();
 
 //mw for req.body
 app.use(express.json());
+
+app.use(cors());
 
 app.use("/api", router);
 

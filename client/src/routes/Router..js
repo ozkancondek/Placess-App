@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { Footer } from "../components/footer/Footer";
 
 import { Home } from "../pages/Home";
 
@@ -26,7 +27,7 @@ export const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} /> */}
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </React.Fragment>
   );
 };
