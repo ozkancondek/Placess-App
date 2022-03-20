@@ -4,6 +4,8 @@ import { Home } from "./pages/Home";
 import { MainProvider, useOut } from "./providers/MainProvider";
 import { ApiProvider, useApi } from "./providers/ApiProvider";
 import { useEffect } from "react";
+import { SearchProvider } from "./providers/SearchProvider";
+import { Navigation } from "./components/Navigation";
 
 const App = () => {
   const { theme } = useTheme();
@@ -22,9 +24,12 @@ const App = () => {
   }, [getAllCities]); */
 
   return (
-    <BackgroundThemeContainer theme={theme}>
+    /*     <BackgroundThemeContainer theme={theme}>
       <Home />
-    </BackgroundThemeContainer>
+    </BackgroundThemeContainer> */
+    <>
+      <Navigation />
+    </>
   );
 };
 
@@ -42,9 +47,11 @@ const Main = () => (
   </ErrorBoundary> */
   <ThemeProvider>
     <MainProvider>
-      <ApiProvider>
-        <App />
-      </ApiProvider>
+      <SearchProvider>
+        <ApiProvider>
+          <App />
+        </ApiProvider>
+      </SearchProvider>
     </MainProvider>
   </ThemeProvider>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Footer } from "../components/footer/Footer";
+import { Footer } from "../components/Footer";
 
 import { Home } from "../pages/Home";
 
