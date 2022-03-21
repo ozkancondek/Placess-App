@@ -1,18 +1,26 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+
 import { Footer } from "../components/Footer";
 
+import { Navigation } from "../components/Navigation";
+import { Pagination } from "../components/Pagination";
+import Register from "../components/Register";
+
 import { Home } from "../pages/Home";
+import { RoutesContainer } from "../styles/ComponentsStyles";
 
 export const Router = () => {
   // const { isAuthenticated } = useOut();
   return (
     <React.Fragment>
-      {/* <Navi /> */}
+      <Navigation />
+      <RoutesContainer>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/*       <Route path="/" element={<Error />} /> */}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* 
+          {/* 
         <Route
           path="/yourchoices"
           element={isAuthenticated ? <YourChoices /> : <SignIn />}
@@ -26,7 +34,9 @@ export const Router = () => {
         <Route path="/cities" element={<Cities />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} /> */}
-      </Routes>
+        </Routes>
+      </RoutesContainer>
+
       <Footer />
     </React.Fragment>
   );

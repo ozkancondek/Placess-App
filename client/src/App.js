@@ -6,6 +6,7 @@ import { ApiProvider, useApi } from "./providers/ApiProvider";
 import { useEffect } from "react";
 import { SearchProvider } from "./providers/SearchProvider";
 import { Navigation } from "./components/Navigation";
+import { Router } from "./routes/Router.";
 
 const App = () => {
   const { theme } = useTheme();
@@ -24,12 +25,9 @@ const App = () => {
   }, [getAllCities]); */
 
   return (
-    /*     <BackgroundThemeContainer theme={theme}>
-      <Home />
-    </BackgroundThemeContainer> */
-    <>
-      <Navigation />
-    </>
+    <BackgroundThemeContainer theme={theme}>
+      <Router />
+    </BackgroundThemeContainer>
   );
 };
 
