@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-
+import "../styles/Navigation.css";
 import { Container, Form, FormControl, Nav, Navbar } from "react-bootstrap";
-import "../../styles/Navigation.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSearch } from "../providers/SearchProvider";
 import { useOut } from "../providers/MainProvider";
