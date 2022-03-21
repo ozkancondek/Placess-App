@@ -5,13 +5,13 @@ import { PaginationBar } from "../styles/ComponentsStyles";
 
 export const Pagination = () => {
   const { setPageNum } = useOut();
-  const { getPost } = useApi();
+  const { getAllCities } = useApi();
   const [lenData, setLenData] = useState(0);
 
-  /*   const fetch = async () => {
+  const fetch = async () => {
     try {
-      let res = await getPost();
-      setLenData(res.length);
+      let res = await getAllCities();
+      setLenData(res.cityList.length);
     } catch (error) {
       console.log(error);
     }
@@ -19,7 +19,7 @@ export const Pagination = () => {
 
   useEffect(() => {
     fetch();
-  }, []); */
+  }, []);
 
   let cardNumberInPage = 20;
 
@@ -31,18 +31,18 @@ export const Pagination = () => {
   return (
     <div>
       <PaginationBar>
-        <a href="#" onClick={() => setPageNum(items[0])}>
+        <a href="" onClick={() => setPageNum(items[0])}>
           &laquo;
         </a>
         {items.map((num, index) => {
           return (
-            <a key={index} href="#" onClick={() => setPageNum(num)}>
+            <a key={index} href="" onClick={() => setPageNum(num)}>
               {num}
             </a>
           );
         })}
 
-        <a href="#" onClick={() => setPageNum(items.length)}>
+        <a href="" onClick={() => setPageNum(items.length)}>
           &raquo;
         </a>
       </PaginationBar>

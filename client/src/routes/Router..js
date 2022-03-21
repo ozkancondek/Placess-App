@@ -30,7 +30,7 @@ export const Router = () => {
             element={isAuthenticated ? <Forum /> : <Signin />}
           />
 
-          <Route path="/:clickcity/:cityid" element={<ClickCity />} />
+          <Route path="/clickcity/:cityid" element={<ClickCity />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />

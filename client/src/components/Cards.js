@@ -22,7 +22,7 @@ export const Cards = () => {
   const { isAuthenticated } = useOut();
   const [showAddCity, setShowAddCity] = useState(false);
   const { favList, setPageNum, pageNum } = useOut();
-  const { getPost } = useApi();
+  const { getAllCities } = useApi();
 
   const { val } = useSearch();
 
@@ -31,16 +31,16 @@ export const Cards = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        let res = await getPost(pageNum); // getallcities function
+        let res = await getAllCities(pageNum);
 
-        setPlaces(res);
+        setPlaces(res.sliced);
       } catch (error) {
         console.log(error);
       }
     };
     fetch();
     console.log(places);
-  }, [getPost, pageNum]);
+  }, [getAllCities, pageNum]);
 
   const filteredData = places
     .filter((card) => card.title.toLowerCase().includes(val.toLowerCase()))
@@ -50,7 +50,7 @@ export const Cards = () => {
           isFavorite={favList.includes(card.id)}
           card={card}
           key={card.id}
-          id={card.id}
+          id={card._id}
         />
       );
     });
@@ -81,10 +81,10 @@ export const Cards = () => {
       <div>
         {showAddCity && <AddNewPlace setShowAddCity={setShowAddCity} />}
       </div>
-      {/* 
+
       <Container className="text-center mt-4 height:500px">
         <Row className="d-flex justify-content-center">{filteredData}</Row>
-      </Container> */}
+      </Container>
     </div>
   );
 };

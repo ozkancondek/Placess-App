@@ -28,11 +28,9 @@ export const ClickCity = () => {
   const [comments, setComments] = useState([]);
 
   const [filteredCity, setFilteredCity] = useState([]);
-  const [cityById, setCityById] = useState([]);
-
-  //const[filteredCity,setFilteredCity] = useState()
 
   const params = useParams();
+
   const commentsById = async (id) => {
     try {
       //get comments
@@ -43,26 +41,15 @@ export const ClickCity = () => {
       console.log(error);
     }
   };
-  //get city by id
-  const getCityByIdFromBackend = async () => {
-    try {
-      let res = await axios(
-        "http://localhost:4000/api/cities/" + parseInt(params.cityid)
-      );
-      setCityById(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  //get all cities and assign it to data
+  //get single  cities and assign it to filtered data
   const fetch = async () => {
     try {
       let res = await axios(
-        "http://localhost:4000/api/cities/" + parseInt(params.cityid)
+        `http://localhost:5000/api/cities/details/${params.cityid}`
       );
       //setData(res);
-      setFilteredCity(res.data);
+      setFilteredCity(res.data.CityDetails);
     } catch (error) {
       console.log(error);
     }
@@ -71,10 +58,7 @@ export const ClickCity = () => {
   useEffect(() => {
     commentsById(filteredCity.id);
     fetch();
-    getCityByIdFromBackend();
   }, []);
-
-  //console.log(cityById);
 
   //post the comment
   const handleSubmit = (e) => {
@@ -92,7 +76,7 @@ export const ClickCity = () => {
           comment
         );
         let data = res.data;
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -142,7 +126,7 @@ export const ClickCity = () => {
         <ImageContainer img={filteredCity.image}></ImageContainer>
         <TextContainer>
           <h2>{filteredCity.title}</h2>
-          <p>{filteredCity.desc}</p>
+          <p>{filteredCity.description}</p>
         </TextContainer>
       </TextPhotoContainer>
       <DetailsBar>

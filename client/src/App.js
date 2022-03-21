@@ -1,12 +1,11 @@
 import { ThemeProvider, useTheme } from "./providers/ThemeProvider";
 import { BackgroundThemeContainer } from "./styles/Theme";
-import { Home } from "./pages/Home";
-import { MainProvider, useOut } from "./providers/MainProvider";
-import { ApiProvider, useApi } from "./providers/ApiProvider";
-import { useEffect } from "react";
+import { MainProvider } from "./providers/MainProvider";
+import { ApiProvider } from "./providers/ApiProvider";
 import { SearchProvider } from "./providers/SearchProvider";
-import { Navigation } from "./components/Navigation";
+import { Error } from "./components/Error";
 import { Router } from "./routes/Router.";
+import { ErrorBoundary } from "react-error-boundary";
 
 const App = () => {
   const { theme } = useTheme();
@@ -32,7 +31,7 @@ const App = () => {
 };
 
 const Main = () => (
-  /*   <ErrorBoundary FallbackComponent={Error}>
+  <ErrorBoundary FallbackComponent={Error}>
     <ThemeProvider>
       <MainProvider>
         <SearchProvider>
@@ -42,16 +41,7 @@ const Main = () => (
         </SearchProvider>
       </MainProvider>
     </ThemeProvider>
-  </ErrorBoundary> */
-  <ThemeProvider>
-    <MainProvider>
-      <SearchProvider>
-        <ApiProvider>
-          <App />
-        </ApiProvider>
-      </SearchProvider>
-    </MainProvider>
-  </ThemeProvider>
+  </ErrorBoundary>
 );
 
 export default Main;

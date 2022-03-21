@@ -13,7 +13,7 @@ export const Card = ({ card, id }) => {
         <img src={card.image} alt={card.title}></img>
 
         <div className="card-over">
-          <p>{card.desc}</p>
+          <p>{card.description}</p>
         </div>
         <div className="title">{card.title}</div>
         <Button
