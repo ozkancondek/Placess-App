@@ -19,6 +19,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useOut } from "../providers/MainProvider";
 import { CopyRight } from "./CopyRight";
+import { useApi } from "../providers/ApiProvider";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -34,11 +35,13 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { isAuthenticated, setIsAutenticated } = useOut();
+  const { userLogin } = useApi();
   const initialValues = {
     email: "",
     password: "",
   };
-  /*   const handleSubmit = (values, { resetForm }) => {
+
+  const handleSubmit = (values, { resetForm }) => {
     const authfFunc = async () => {
       let user = {
         email: values.email,
@@ -46,27 +49,19 @@ const Login = () => {
       };
 
       try {
-        let res = await axios.post(
-          "http://localhost:4000/api/users/signin",
-          user
-        );
+        let res = await userLogin(user);
+        localStorage.setItem("auth_token", res);
+        setIsAutenticated(!!localStorage.getItem("auth_token"));
 
-        setIsAutenticated(true);
-        let data = res.data;
-        console.log(data);
         navigate("/");
       } catch (error) {
-        setIsAutenticated(false);
-        setErrorMessage(error.message);
+        setErrorMessage(error.errors.message);
       }
     };
     authfFunc();
 
-   
     resetForm();
-  }; */
-
-  //console.log(errorMessage);
+  };
 
   return (
     <Container
@@ -92,7 +87,7 @@ const Login = () => {
       </Typography>
       <Formik
         initialValues={initialValues}
-        /*    onSubmit={handleSubmit} */
+        onSubmit={handleSubmit}
         validationSchema={signUpValidationSchema}
       >
         {({

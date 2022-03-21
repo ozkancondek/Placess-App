@@ -14,14 +14,15 @@ export const Navigation = () => {
   const location = useLocation();
 
   const { isAuthenticated, setIsAutenticated } = useOut();
+  console.log(isAuthenticated);
 
   const filterCity = (e) => {
     setVal(e.target.value);
   };
 
   const signOut = () => {
-    setIsAutenticated(false);
-    //delete token from local
+    localStorage.removeItem("auth_token");
+    setIsAutenticated(!!localStorage.getItem("auth_token"));
     navigate("/signin");
   };
 
@@ -90,7 +91,7 @@ export const Navigation = () => {
             <FormControl
               onChange={filterCity}
               type="search"
-              placeholder="Search"
+              placeholder="Search in places..."
               className="me-2"
               aria-label="Search"
             />

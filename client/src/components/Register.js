@@ -2,6 +2,7 @@ import React from "react";
 import { LockOutlined } from "@mui/icons-material";
 
 import {
+  Alert,
   Avatar,
   Box,
   Button,
@@ -18,6 +19,8 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CopyRight } from "./CopyRight";
+import { useApi } from "../providers/ApiProvider";
+import { useState } from "react";
 
 const signUpValidationSchema = Yup.object().shape({
   username: Yup.string()
@@ -39,6 +42,9 @@ const signUpValidationSchema = Yup.object().shape({
 });
 
 function Register() {
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { userRegister } = useApi();
   const navigate = useNavigate();
   const initialValues = {
     username: "",
@@ -47,9 +53,7 @@ function Register() {
     password2: "",
   };
 
-  /*  const handleSubmit = (values, { resetForm }) => {
-    // console.log(values);
-
+  const handleSubmit = (values, { resetForm }) => {
     const addUserToStorage = async () => {
       let user = {
         username: values.username,
@@ -58,21 +62,20 @@ function Register() {
       };
 
       try {
-        let res = await axios.post(
-          "http://localhost:4000/api/users/signup",
-          user
-        );
-        let data = res.data;
-        console.log(data);
+        let res = await userRegister(user);
+        setMessage(res);
       } catch (error) {
         console.log(error);
+        setErrorMessage(error);
       }
     };
     addUserToStorage();
-    navigate("/signin");
+    setTimeout(() => {
+      navigate("/signin");
+    }, 3000);
 
     resetForm();
-  }; */
+  };
 
   return (
     <Container
@@ -96,9 +99,12 @@ function Register() {
       <Typography sx={{ margin: "1rem" }} variant="h4">
         Sign Up
       </Typography>
+      {message && <Alert severity="success">{message}</Alert>}
+      {errorMessage && <Alert severity="error">{message}</Alert>}
+
       <Formik
         initialValues={initialValues}
-        /*  onSubmit={handleSubmit} */
+        onSubmit={handleSubmit}
         validationSchema={signUpValidationSchema}
       >
         {({

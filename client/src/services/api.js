@@ -12,6 +12,18 @@ export const fetchData = async (pageNum) => {
   }
 };
 
+export const register = async (data) => {
+  let res = await axios.post("http://localhost:5000/api/auth/register", data);
+  return res.data;
+};
+
+export const login = async (data) => {
+  let res = await axios.post("http://localhost:5000/api/auth/login", data);
+  return res.data;
+};
+
 export const initialServices = {
   fetchData,
+  register,
+  login,
 };

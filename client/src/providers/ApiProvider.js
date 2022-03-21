@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createContext, useContext } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { initialServices } from "../services/api";
@@ -7,7 +6,6 @@ export const ApiContext = createContext();
 
 export const ApiProvider = ({ children }) => {
   const handleError = useErrorHandler();
-  const [as, setas] = useState([1, 2, 3]);
 
   const asyncWrapper = async (cb) => {
     try {
@@ -22,9 +20,17 @@ export const ApiProvider = ({ children }) => {
     let res = await asyncWrapper(() => initialServices.fetchData(id));
     return res;
   };
+  const userRegister = async (data) => {
+    let res = await asyncWrapper(() => initialServices.register(data));
+    return res;
+  };
+  const userLogin = async (data) => {
+    let res = await asyncWrapper(() => initialServices.login(data));
+    return res;
+  };
 
   return (
-    <ApiContext.Provider value={{ getAllCities: getAllCities }}>
+    <ApiContext.Provider value={{ getAllCities, userRegister, userLogin }}>
       {children}
     </ApiContext.Provider>
   );

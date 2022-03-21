@@ -26,25 +26,50 @@ export const Cards = () => {
 
   const { val } = useSearch();
 
+  const [pagedPlaces, setPagedPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    const fetch = async () => {
+    const getWithPageNum = async () => {
       try {
         let res = await getAllCities(pageNum);
 
-        setPlaces(res.sliced);
+        setPagedPlaces(res.sliced);
       } catch (error) {
         console.log(error);
       }
     };
-    fetch();
-    console.log(places);
+    const getAll = async () => {
+      try {
+        let res = await getAllCities();
+
+        setPlaces(res.cityList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getWithPageNum();
+    getAll();
   }, [getAllCities, pageNum]);
 
-  const filteredData = places
-    .filter((card) => card.title.toLowerCase().includes(val.toLowerCase()))
-    .map((card) => {
+  var filteredData = [];
+  //if the user search, filter cities from all cities
+  if (val) {
+    filteredData = places
+      .filter((card) => card.title.toLowerCase().includes(val.toLowerCase()))
+      .map((card) => {
+        return (
+          <Card
+            isFavorite={favList.includes(card.id)}
+            card={card}
+            key={card.id}
+            id={card._id}
+          />
+        );
+      });
+  } else {
+    //otherwise just show cities with page number
+    filteredData = pagedPlaces.map((card) => {
       return (
         <Card
           isFavorite={favList.includes(card.id)}
@@ -54,7 +79,7 @@ export const Cards = () => {
         />
       );
     });
-
+  }
   const toggleAddCityCard = () => {
     showAddCity ? setShowAddCity(false) : setShowAddCity(true);
   };
