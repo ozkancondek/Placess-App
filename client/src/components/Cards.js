@@ -1,6 +1,5 @@
 import { Card } from "./Card";
 import PropTypes from "prop-types";
-import banner23 from "../assests/banner23.jpg";
 
 import { Button, Container, Row } from "react-bootstrap";
 
@@ -18,6 +17,8 @@ import { useSearch } from "../providers/SearchProvider";
 import { AddNewPlace } from "./AddNewPlaace";
 
 export const Cards = () => {
+  const url3 =
+    "https://cdn.create.vista.com/api/media/medium/211309022/stock-photo-photography?token=";
   const { isAuthenticated } = useOut();
   const [showAddCity, setShowAddCity] = useState(false);
   const { favList, setPageNum, pageNum } = useOut();
@@ -60,7 +61,7 @@ export const Cards = () => {
   return (
     <div>
       <TextPhotoContainer>
-        <ImageContainer img={banner23}></ImageContainer>
+        <ImageContainer img={url3}></ImageContainer>
         <TextContainer>
           <p>
             There are many places in the world that need to be explored. With

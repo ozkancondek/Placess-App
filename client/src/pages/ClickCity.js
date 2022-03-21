@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useOut } from "../providers/MainProvider";
 
-import "./pages.css";
+import "../styles/Pages.css";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { useApi } from "../providers/ApiProvider";

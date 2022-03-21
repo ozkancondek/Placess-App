@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../components/cards/Cards.css";
-import { Card } from "../components/Card";
+import "../styles/Card.css";
 
 import { useOut } from "../providers/MainProvider";
 
 import { ChooseCity } from "../components/ChooseCity";
 import { useApi } from "../providers/ApiProvider";
+import { Card } from "../components/Card";
 
 export const YourChoices = () => {
   const [data, setdata] = useState([]);
