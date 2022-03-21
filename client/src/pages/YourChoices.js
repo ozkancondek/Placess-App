@@ -9,14 +9,14 @@ import { Card } from "../components/Card";
 
 export const YourChoices = () => {
   const [data, setdata] = useState([]);
-  const { getPost } = useApi();
+  const { getAllCities } = useApi();
   const { favList } = useOut();
   useEffect(() => {
     const fetch = async () => {
       try {
-        let res = await getPost();
+        let res = await getAllCities();
 
-        setdata(res);
+        setdata(res.cityList);
       } catch (error) {
         console.log(error);
       }
@@ -25,14 +25,14 @@ export const YourChoices = () => {
   }, []);
 
   const favCities = data
-    .filter((card) => favList.includes(card.id))
+    .filter((card) => favList.includes(card._id))
     .map((card) => {
       return (
         <Card
-          isFavorite={favList.includes(card.id)}
+          isFavorite={favList.includes(card._id)}
           card={card}
-          key={data.id}
-          id={card.id}
+          key={data._id}
+          id={card._id}
         />
       );
     });

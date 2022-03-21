@@ -28,10 +28,11 @@ export const ClickCity = () => {
   const [comments, setComments] = useState([]);
 
   const [filteredCity, setFilteredCity] = useState([]);
+  const { getSingleCity } = useApi();
 
   const params = useParams();
 
-  const commentsById = async (id) => {
+  /*   const commentsById = async (id) => {
     try {
       //get comments
       let res = await axios("http://localhost:4000/api/cities/comments/" + id);
@@ -40,23 +41,23 @@ export const ClickCity = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
   //get single  cities and assign it to filtered data
   const fetch = async () => {
     try {
-      let res = await axios(
-        `http://localhost:5000/api/cities/details/${params.cityid}`
-      );
       //setData(res);
-      setFilteredCity(res.data.CityDetails);
+      let res = await getSingleCity(params.cityid);
+      console.log(res.CityDetails);
+
+      setFilteredCity(res.CityDetails);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    commentsById(filteredCity.id);
+    // commentsById(filteredCity.id);
     fetch();
   }, []);
 
@@ -86,7 +87,7 @@ export const ClickCity = () => {
 
     e.preventDefault();
   };
-
+  //is auth ise rengi degistirebilsin
   const navigate = useNavigate();
   const { setFavList, favList, showComment, setShowComment } = useOut();
 
@@ -96,16 +97,18 @@ export const ClickCity = () => {
     e.stopPropagation();
 
     setFavList((prev) => {
-      if (prev.includes(filteredCity.id)) {
-        const filteredArray = prev.filter((favId) => favId !== filteredCity.id);
+      if (prev.includes(filteredCity._id)) {
+        const filteredArray = prev.filter(
+          (favId) => favId !== filteredCity._id
+        );
         localStorage.setItem("localData", JSON.stringify(filteredArray));
         return filteredArray;
       } else {
         localStorage.setItem(
           "localData",
-          JSON.stringify([...prev, filteredCity.id])
+          JSON.stringify([...prev, filteredCity._id])
         );
-        return [...prev, filteredCity.id];
+        return [...prev, filteredCity._id];
       }
     });
   };
@@ -118,7 +121,7 @@ export const ClickCity = () => {
     }
   };
 
-  const isFavorite = favList.includes(filteredCity.id);
+  const isFavorite = favList.includes(filteredCity._id);
 
   return (
     <div>
