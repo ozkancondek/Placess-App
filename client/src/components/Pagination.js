@@ -4,7 +4,8 @@ import { useOut } from "../providers/MainProvider";
 import { PaginationBar } from "../styles/ComponentsStyles";
 
 export const Pagination = () => {
-  const { setPageNum } = useOut();
+  const { pageNum, setPageNum } = useOut();
+  console.log(pageNum);
   const { getAllCities } = useApi();
   const [lenData, setLenData] = useState(0);
 
@@ -19,7 +20,7 @@ export const Pagination = () => {
 
   useEffect(() => {
     fetch();
-  }, []);
+  });
 
   let cardNumberInPage = 20;
 
@@ -31,20 +32,20 @@ export const Pagination = () => {
   return (
     <div>
       <PaginationBar>
-        <a href="" onClick={() => setPageNum(items[0])}>
+        <p href="#top" onClick={() => setPageNum(items[0])}>
           &laquo;
-        </a>
+        </p>
         {items.map((num, index) => {
           return (
-            <a key={index} href="" onClick={() => setPageNum(num)}>
+            <p key={index} onClick={() => setPageNum(num)}>
               {num}
-            </a>
+            </p>
           );
         })}
 
-        <a href="" onClick={() => setPageNum(items.length)}>
+        <p href="#top" onClick={() => setPageNum(items.length)}>
           &raquo;
-        </a>
+        </p>
       </PaginationBar>
     </div>
   );

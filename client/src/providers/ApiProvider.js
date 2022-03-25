@@ -16,8 +16,8 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
-  const getAllCities = async (id) => {
-    let res = await asyncWrapper(() => initialServices.fetchData(id));
+  const getAllCities = async (page) => {
+    let res = await asyncWrapper(() => initialServices.fetchData(page));
     return res;
   };
   const getSingleCity = async (id) => {

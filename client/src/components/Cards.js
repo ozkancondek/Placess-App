@@ -21,7 +21,7 @@ export const Cards = () => {
     "https://cdn.create.vista.com/api/media/medium/211309022/stock-photo-photography?token=";
   const { isAuthenticated } = useOut();
   const [showAddCity, setShowAddCity] = useState(false);
-  const { favList, setPageNum, pageNum } = useOut();
+  const { favList, pageNum } = useOut();
   const { getAllCities } = useApi();
 
   const { val } = useSearch();
@@ -57,24 +57,24 @@ export const Cards = () => {
   if (val) {
     filteredData = places
       .filter((card) => card.title.toLowerCase().includes(val.toLowerCase()))
-      .map((card) => {
+      .map((card, index) => {
         return (
           <Card
             isFavorite={favList.includes(card.id)}
             card={card}
-            key={card.id}
+            key={index}
             id={card._id}
           />
         );
       });
   } else {
     //otherwise just show cities with page number
-    filteredData = pagedPlaces.map((card) => {
+    filteredData = pagedPlaces.map((card, index) => {
       return (
         <Card
           isFavorite={favList.includes(card.id)}
           card={card}
-          key={card.id}
+          key={index}
           id={card._id}
         />
       );

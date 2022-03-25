@@ -130,8 +130,17 @@ export const ErrorText = styled.div`
 `;
 //pagination bar
 export const PaginationBar = styled.div`
-  display: inline-block;
-  & > a {
+  margin: auto;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  width: 40%;
+  padding-top: 5px;
+
+  & > p {
+    cursor: pointer;
     color: black;
     float: left;
     padding: 8px 16px;
