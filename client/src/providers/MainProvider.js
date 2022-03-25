@@ -6,7 +6,7 @@ const OuterContext = createContext();
 export const MainProvider = (props) => {
   //take it from localstorage
   const [isAuthenticated, setIsAutenticated] = useState(false);
-  console.log(isAuthenticated);
+
   const [showComment, setShowComment] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [data, setData] = useState([]);

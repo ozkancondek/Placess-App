@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -20,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { useOut } from "../providers/MainProvider";
 import { CopyRight } from "./CopyRight";
 import { useApi } from "../providers/ApiProvider";
+import { useEffect } from "react";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -55,9 +57,10 @@ const Login = () => {
 
         navigate("/");
       } catch (error) {
-        setErrorMessage(error.errors.message);
+        setErrorMessage(error.response.data.errors[0].message);
       }
     };
+
     authfFunc();
 
     resetForm();
@@ -85,6 +88,7 @@ const Login = () => {
       <Typography sx={{ margin: "1rem" }} variant="h4">
         Sign In
       </Typography>
+      {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

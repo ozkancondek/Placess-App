@@ -1,32 +1,34 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import { useApi } from "../providers/ApiProvider";
+import { AddCityComponentContainer } from "../styles/ComponentsStyles";
 
 export const AddNewPlace = ({ setShowAddCity }) => {
-  const location = useLocation();
+  const [message, setMessage] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [placeName, setPlaceName] = useState("");
-  const [desc, setDesc] = useState("");
+  const [description, setDesc] = useState("");
+  const { addNewPlace } = useApi();
 
   //post a new city get from api
 
-  /*   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     const postCity = async () => {
       let city = {
-        desc: desc,
+        description: description,
         image: imgUrl,
         title: placeName,
       };
 
       try {
-        let res = await axios.post(
-          "http://localhost:4000/api/city/newplace",
-          city
-        );
-        let data = res.data;
-        location.reload();
-        console.log(data);
+        let res = await addNewPlace(city);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+
+        setMessage(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -35,18 +37,10 @@ export const AddNewPlace = ({ setShowAddCity }) => {
     setTimeout(() => setShowAddCity(false), 3000);
 
     e.preventDefault();
-  }; */
+  };
   return (
-    <div
-      style={{
-        width: "60%",
-        margin: "auto",
-        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-        padding: "10px",
-      }}
-    >
-      {/*    onSubmit={handleSubmit} */}
-      <Form>
+    <AddCityComponentContainer>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Add Image URL</Form.Label>
           <Form.Control
@@ -81,7 +75,10 @@ export const AddNewPlace = ({ setShowAddCity }) => {
         <Button variant="secondary" type="submit">
           Submit
         </Button>
+        {message && (
+          <Alert severity="success">{`${message} Page will reload`}</Alert>
+        )}
       </Form>
-    </div>
+    </AddCityComponentContainer>
   );
 };

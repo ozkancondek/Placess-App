@@ -14,7 +14,6 @@ export const Navigation = () => {
   const location = useLocation();
 
   const { isAuthenticated, setIsAutenticated } = useOut();
-  console.log(isAuthenticated);
 
   const filterCity = (e) => {
     setVal(e.target.value);

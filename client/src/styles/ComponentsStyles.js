@@ -244,6 +244,13 @@ export const CardContainer = styled.div`
 `;
 
 //ClickCity component
+
+export const ClickCityContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 export const Comment = styled.div`
   border-bottom: 3px solid grey;
   font-family: "Playfair Display", serif;
@@ -296,4 +303,12 @@ export const IconContainer = styled.div`
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
   }
+`;
+
+//add new city component
+export const AddCityComponentContainer = styled.div`
+  width: 60%;
+  margin: auto;
+  boxshadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
 `;

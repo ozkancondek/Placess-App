@@ -26,10 +26,15 @@ export const login = async (data) => {
   let res = await axios.post("http://localhost:5000/api/auth/login", data);
   return res.data;
 };
+export const newPlace = async (data) => {
+  let res = await axios.post("http://localhost:5000/api/city/newplace", data);
+  return res.data;
+};
 
 export const initialServices = {
   fetchData,
   register,
   login,
   fetchSingleData,
+  newPlace,
 };

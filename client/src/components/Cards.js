@@ -14,7 +14,7 @@ import {
 import { useOut } from "../providers/MainProvider";
 import { useApi } from "../providers/ApiProvider";
 import { useSearch } from "../providers/SearchProvider";
-import { AddNewPlace } from "./AddNewPlaace";
+import { AddNewPlace } from "./AddNewPlace";
 
 export const Cards = () => {
   const url3 =

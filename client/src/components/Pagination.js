@@ -5,7 +5,6 @@ import { PaginationBar } from "../styles/ComponentsStyles";
 
 export const Pagination = () => {
   const { pageNum, setPageNum } = useOut();
-  console.log(pageNum);
   const { getAllCities } = useApi();
   const [lenData, setLenData] = useState(0);
 

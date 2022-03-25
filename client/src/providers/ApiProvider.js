@@ -32,10 +32,20 @@ export const ApiProvider = ({ children }) => {
     let res = await asyncWrapper(() => initialServices.login(data));
     return res;
   };
+  const addNewPlace = async (data) => {
+    let res = await asyncWrapper(() => initialServices.newPlace(data));
+    return res;
+  };
 
   return (
     <ApiContext.Provider
-      value={{ getAllCities, userRegister, userLogin, getSingleCity }}
+      value={{
+        getAllCities,
+        userRegister,
+        userLogin,
+        getSingleCity,
+        addNewPlace,
+      }}
     >
       {children}
     </ApiContext.Provider>

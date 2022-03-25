@@ -14,6 +14,7 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import { useApi } from "../providers/ApiProvider";
 import {
+  ClickCityContainer,
   Comment,
   CommentContainer,
   DetailsBar,
@@ -48,7 +49,6 @@ export const ClickCity = () => {
     try {
       //setData(res);
       let res = await getSingleCity(params.cityid);
-      console.log(res.CityDetails);
 
       setFilteredCity(res.CityDetails);
     } catch (error) {
@@ -124,7 +124,7 @@ export const ClickCity = () => {
   const isFavorite = favList.includes(filteredCity._id);
 
   return (
-    <div>
+    <ClickCityContainer>
       <TextPhotoContainer>
         <ImageContainer img={filteredCity.image}></ImageContainer>
         <TextContainer>
@@ -215,6 +215,6 @@ export const ClickCity = () => {
           </form>
         </CommentContainer>
       )}
-    </div>
+    </ClickCityContainer>
   );
 };
