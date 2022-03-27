@@ -21,7 +21,7 @@ export const Navigation = () => {
 
   const signOut = () => {
     localStorage.removeItem("auth_token");
-    setIsAutenticated(!!localStorage.getItem("auth_token"));
+    setIsAutenticated(false);
     navigate("/signin");
   };
 
