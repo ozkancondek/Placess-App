@@ -14,7 +14,7 @@ const Slider = () => {
     const getAll = async () => {
       try {
         let res = await getAllCities();
-
+        console.log(res);
         setPlaces(res.cityList);
       } catch (error) {
         console.log(error);
@@ -49,12 +49,12 @@ const Slider = () => {
   };
   return (
     <div style={{ textAlign: "center" }}>
-      <Carousel fade>{randomCityIdArray?.map((c) => slide(c))}</Carousel>
+      {/* <Carousel fade>{randomCityIdArray?.map((c) => slide(c))}</Carousel>
       <div style={{ marginTop: "20px", marginBottom: "20px" }}>
         <Button onClick={() => navigate("/cities")} variant="outline-secondary">
           Discover More
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

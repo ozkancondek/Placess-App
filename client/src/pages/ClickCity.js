@@ -49,7 +49,7 @@ export const ClickCity = () => {
       let res = await fetchAllComments();
       //filter them
       setComments(
-        res.allComments.filter((c) => c.cityName === filteredCity.title)
+        res.allComments?.filter((c) => c.cityName === filteredCity.title)
       );
       console.log(comments);
     } catch (error) {

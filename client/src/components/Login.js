@@ -48,7 +48,6 @@ const Login = () => {
 
       try {
         let res = await userLogin(user);
-
         localStorage.setItem("auth_token", res.token);
         setIsAutenticated(!!localStorage.getItem("auth_token"));
         localStorage.setItem("username", res.username);
