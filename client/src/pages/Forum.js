@@ -8,50 +8,39 @@ import { useOut } from "../providers/MainProvider";
 
 import "../styles/Pages.css";
 export const Forum = () => {
+  const { fetchAllComments } = useApi();
   const [comments, setComments] = useState([]);
-  const [places, setPlaces] = useState([]);
-  const { getPost } = useApi();
-  const { date } = useOut();
+
+  const getComments = async () => {
+    try {
+      let res = await fetchAllComments();
+
+      setComments(res.allComments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getAllCommentsFromBackend = async (id) => {
-      try {
-        let res = await axios("http://localhost:4000/api/city/comments");
-
-        setComments(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const fetch = async () => {
-      try {
-        let res = await getPost();
-        setPlaces(res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetch();
-    getAllCommentsFromBackend();
+    getComments();
   }, []);
 
   console.log(comments);
 
   return (
     <div>
-      {comments.map((com) => {
+      {comments.map((c) => {
         return (
           <div className="main-container">
             <div className="comment-card">
               <div className="header">
                 <h4>
                   {<FaUserCircle />}
-                  {com.username} commented about{" "}
-                  {places.find((c) => c.id === com.cityid)}
+                  {c.userName} commented about {c.cityName}
                 </h4>
-                <h4> {date}</h4>
+                <h4> {c.addDate.slice(0, 10)}</h4>
               </div>
-              <p>{com.comment}</p>
+              <p>{c.comment}</p>
               <div className="icon-bar">
                 <AiOutlineLike className="icon" />
                 <AiOutlineDislike className="icon" />
