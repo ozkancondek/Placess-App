@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Card.css";
-
 import { useOut } from "../providers/MainProvider";
-
 import { ChooseCity } from "../components/ChooseCity";
 import { useApi } from "../providers/ApiProvider";
 import { Card } from "../components/Card";
@@ -22,7 +20,7 @@ export const YourChoices = () => {
       }
     };
     fetch();
-  }, []);
+  });
 
   const favCities = data
     .filter((card) => favList.includes(card._id))

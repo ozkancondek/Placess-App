@@ -3,8 +3,8 @@ import Login from "../components/Login";
 
 export const Signin = () => {
   return (
-    <div>
+    <React.Fragment>
       <Login />
-    </div>
+    </React.Fragment>
   );
 };

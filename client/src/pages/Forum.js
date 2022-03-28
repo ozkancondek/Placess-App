@@ -1,12 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentDots, FaUserCircle } from "react-icons/fa";
 import { GiWorld } from "react-icons/gi";
 import { useApi } from "../providers/ApiProvider";
-import { useOut } from "../providers/MainProvider";
-
 import "../styles/Pages.css";
+
 export const Forum = () => {
   const { fetchAllComments } = useApi();
   const [comments, setComments] = useState([]);
@@ -23,7 +21,7 @@ export const Forum = () => {
 
   useEffect(() => {
     getComments();
-  }, []);
+  });
 
   console.log(comments);
 

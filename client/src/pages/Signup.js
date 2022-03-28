@@ -3,8 +3,8 @@ import Register from "../components/Register";
 
 export const Signup = () => {
   return (
-    <div>
+    <React.Fragement>
       <Register />
-    </div>
+    </React.Fragement>
   );
 };

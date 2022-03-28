@@ -11,17 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
-
 import { Formik } from "formik";
 import * as Yup from "yup";
-
-import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 import { useOut } from "../providers/MainProvider";
 import { CopyRight } from "./CopyRight";
 import { useApi } from "../providers/ApiProvider";
-import { useEffect } from "react";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -33,10 +28,11 @@ const signUpValidationSchema = Yup.object().shape({
     .matches(/[A-Z]+/, "Password must have a uppercase")
     .matches(/[!?.@#$%^&*()-+]+/, "Password must have a special char"),
 });
+
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const { isAuthenticated, setIsAutenticated } = useOut();
+  const { setIsAutenticated } = useOut();
   const { userLogin } = useApi();
   const initialValues = {
     email: "",
@@ -62,9 +58,7 @@ const Login = () => {
         setErrorMessage(error.response.data.errors[0].message);
       }
     };
-
     authfFunc();
-
     resetForm();
   };
 
@@ -82,7 +76,6 @@ const Login = () => {
         sx={{
           margin: "1rem auto",
           bgcolor: "primary.main",
-          // bgcolor: blue[500],
         }}
       >
         <LockOutlined />

@@ -4,14 +4,10 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { FaCommentAlt, FaMapSigns, FaUserCircle } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { RiInstagramFill } from "react-icons/ri";
-
 import { useNavigate, useParams } from "react-router-dom";
-
 import { useOut } from "../providers/MainProvider";
-
 import "../styles/Pages.css";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import { useApi } from "../providers/ApiProvider";
 import {
   ClickCityContainer,
@@ -25,24 +21,19 @@ import {
 } from "../styles/ComponentsStyles";
 
 export const ClickCity = () => {
-  const [showComment, setShowComment] = useState(false);
-  const { isAuthenticated } = useOut();
-  const [comments, setComments] = useState([]);
-
   const navigate = useNavigate();
-  const { setFavList, favList } = useOut();
-
-  const [filteredCity, setFilteredCity] = useState([]);
-  const { getSingleCity } = useApi();
-  const { addNewComment, fetchAllComments } = useApi();
-  const [commentText, setCommentText] = useState("");
-  const userName = localStorage.getItem("username");
   const params = useParams();
+  const [showComment, setShowComment] = useState(false);
+  const [isAuthenticated, comments, setComments] = useState([]);
+  const [filteredCity, setFilteredCity] = useState([]);
+  const [commentText, setCommentText] = useState("");
+  const { setFavList, favList } = useOut();
+  const { addNewComment, fetchAllComments, getSingleCity } = useApi();
+  const userName = localStorage.getItem("username");
 
   //get single  cities and assign it to filtered data
   const fetch = async () => {
     try {
-      //setData(res);
       let res = await getSingleCity(params.cityid);
 
       setFilteredCity(res.CityDetails);
@@ -56,7 +47,7 @@ export const ClickCity = () => {
     try {
       //get comments
       let res = await fetchAllComments();
-
+      //filter them
       setComments(
         res.allComments.filter((c) => c.cityName === filteredCity.title)
       );
@@ -69,7 +60,7 @@ export const ClickCity = () => {
   useEffect(() => {
     commentsByName();
     fetch();
-  }, []);
+  });
 
   //post the comment
   const handleSubmit = (e) => {
@@ -94,7 +85,6 @@ export const ClickCity = () => {
     setCommentText("");
     e.preventDefault();
   };
-  //is auth ise rengi degistirebilsin
 
   const changeColor = (e) => {
     e.stopPropagation();

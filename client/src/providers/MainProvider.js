@@ -1,17 +1,11 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-
 const OuterContext = createContext();
 
 export const MainProvider = (props) => {
-  //take it from localstorage
   const [isAuthenticated, setIsAutenticated] = useState(
     !!localStorage.getItem("auth_token")
   );
-
   const [pageNum, setPageNum] = useState(1);
-  const [data, setData] = useState([]);
-
   const [favList, setFavList] = useState([]);
 
   const localData = () => {
@@ -32,7 +26,6 @@ export const MainProvider = (props) => {
       value={{
         isAuthenticated,
         setIsAutenticated,
-        data,
         favList,
         setFavList,
         localData,

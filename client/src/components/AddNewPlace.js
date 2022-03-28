@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Alert from "@mui/material/Alert";
@@ -12,9 +11,8 @@ export const AddNewPlace = ({ setShowAddCity }) => {
   const [description, setDesc] = useState("");
   const { addNewPlace } = useApi();
 
-  //post a new city get from api
-
   const handleSubmit = (e) => {
+    //add new city to database
     const postCity = async () => {
       let city = {
         description: description,
@@ -35,7 +33,6 @@ export const AddNewPlace = ({ setShowAddCity }) => {
     };
     postCity();
     setTimeout(() => setShowAddCity(false), 3000);
-
     e.preventDefault();
   };
   return (

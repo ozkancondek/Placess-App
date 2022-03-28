@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import "../styles/Card.css";
-
 import { useNavigate } from "react-router-dom";
 import { Button, Col } from "react-bootstrap";
 
@@ -30,8 +29,6 @@ export const Card = ({ card, id }) => {
 };
 
 Card.propTypes = {
-  isFavorite: PropTypes.bool.isRequired,
-
   card: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
 };

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "../styles/Navigation.css";
 import {
   Container,
@@ -9,20 +8,20 @@ import {
   Dropdown,
   Button,
 } from "react-bootstrap";
+import { FaRaspberryPi, FaUserCircle } from "react-icons/fa";
+//bootstrap style import
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSearch } from "../providers/SearchProvider";
 import { useOut } from "../providers/MainProvider";
-import { FaRaspberryPi, FaUserCircle } from "react-icons/fa";
-//import { Toggle } from "../toggleButton/Toggle";
 
 export const Navigation = () => {
   const { setVal } = useSearch();
   const navigate = useNavigate();
   const location = useLocation();
-
   const { isAuthenticated, setIsAutenticated } = useOut();
 
+  //set value of the search input area
   const filterCity = (e) => {
     setVal(e.target.value);
   };
@@ -31,7 +30,6 @@ export const Navigation = () => {
     localStorage.removeItem("auth_token");
     localStorage.removeItem("username");
     setIsAutenticated(false);
-
     navigate("/signin");
   };
 
@@ -85,10 +83,6 @@ export const Navigation = () => {
               About
             </Nav.Link>
           </Nav>
-          {/* {navigate("/cities") && (
-            <Nav.Link eventKey="contact">Contact</Nav.Link>
-          )} */}
-
           <Form
             className="d-flex"
             style={{
@@ -105,8 +99,6 @@ export const Navigation = () => {
               aria-label="Search"
             />
           </Form>
-
-          {/* {isAuthenticated && <Nav.Link eventKey="signup">Signup</Nav.Link>} */}
           {!isAuthenticated ? (
             <>
               <Nav.Link eventKey="signin">Sign-in</Nav.Link>
@@ -150,8 +142,6 @@ export const Navigation = () => {
               </Dropdown>
             </>
           )}
-
-          <div className="toggleDiv">{/*  <Toggle /> */}</div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

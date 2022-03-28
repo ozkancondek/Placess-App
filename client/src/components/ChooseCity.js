@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ChooseCityContainer, Text } from "../styles/ComponentsStyles";
 
 export const ChooseCity = () => {

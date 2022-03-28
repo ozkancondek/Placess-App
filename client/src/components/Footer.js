@@ -17,9 +17,9 @@ export const Footer = () => {
           </h3>
 
           <p className="footer-links">
-            <a href="/ ">Home</a> - <a href="#">Blog</a> -{" "}
-            <a href="#">Pricing</a> - <a href="#">Locations</a> -
-            <a href="#">Faq</a> - <a href="#">Contact</a>
+            <a href="/ ">Home</a> - <a href="/forum">Forum</a> -{" "}
+            <a href="/about">About</a> - <a href="/cities">Places</a> -
+            <a href="/contact">Contact</a>
           </p>
 
           <p className="footer-company-name">BlueBerry © 2021</p>

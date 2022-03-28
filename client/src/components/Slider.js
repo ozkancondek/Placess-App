@@ -1,20 +1,39 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Button, Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useOut } from "../providers/MainProvider";
+import { useApi } from "../providers/ApiProvider";
 
 const Slider = () => {
   const navigate = useNavigate();
-  //get data from api
-  const { data } = useOut();
+  const { getAllCities } = useApi();
+  const [places, setPlaces] = useState([]);
+
+  useEffect(() => {
+    const getAll = async () => {
+      try {
+        let res = await getAllCities();
+
+        setPlaces(res.cityList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAll();
+  }, [getAllCities]);
+
+  //take random 6 cities from data
   let randomCityIdArray = [];
   for (let i = 0; i <= 5; i++) {
-    randomCityIdArray.push(Math.floor(Math.random() * (data.length + 1)));
+    randomCityIdArray.push(
+      places[Math.floor(Math.random() * (places.length + 1))]
+    );
   }
-
+  //function for every corousel item
   const slide = (city) => {
     return (
-      <Carousel.Item interval={8000} key={city.id}>
+      <Carousel.Item interval={5000} key={city._id}>
         <img
           style={{ height: "95vh" }}
           className="d-block w-100"
@@ -23,16 +42,14 @@ const Slider = () => {
         />
         <Carousel.Caption>
           <h3>{city.title}</h3>
-          <p>{city.desc}</p>
+          <p>{city.description}</p>
         </Carousel.Caption>
       </Carousel.Item>
     );
   };
   return (
     <div style={{ textAlign: "center" }}>
-      <Carousel fade>
-        {data.filter((city) => randomCityIdArray.includes(city.id)).map(slide)}
-      </Carousel>
+      <Carousel fade>{randomCityIdArray?.map((c) => slide(c))}</Carousel>
       <div style={{ marginTop: "20px", marginBottom: "20px" }}>
         <Button onClick={() => navigate("/cities")} variant="outline-secondary">
           Discover More

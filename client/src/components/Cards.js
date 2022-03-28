@@ -1,10 +1,5 @@
-import { Card } from "./Card";
-import PropTypes from "prop-types";
-
-import { Button, Container, Row } from "react-bootstrap";
-
 import { useEffect, useState } from "react";
-
+import { Button, Container, Row } from "react-bootstrap";
 import {
   AddNewPlaceButton,
   ImageContainer,
@@ -12,6 +7,7 @@ import {
   TextPhotoContainer,
 } from "../styles/ComponentsStyles";
 import { useOut } from "../providers/MainProvider";
+import { Card } from "./Card";
 import { useApi } from "../providers/ApiProvider";
 import { useSearch } from "../providers/SearchProvider";
 import { AddNewPlace } from "./AddNewPlace";
@@ -20,12 +16,10 @@ export const Cards = () => {
   const url3 =
     "https://cdn.create.vista.com/api/media/medium/211309022/stock-photo-photography?token=";
   const { isAuthenticated } = useOut();
-  const [showAddCity, setShowAddCity] = useState(false);
   const { favList, pageNum } = useOut();
   const { getAllCities } = useApi();
-
   const { val } = useSearch();
-
+  const [showAddCity, setShowAddCity] = useState(false);
   const [pagedPlaces, setPagedPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
 
@@ -80,6 +74,7 @@ export const Cards = () => {
       );
     });
   }
+  //add new city button
   const toggleAddCityCard = () => {
     showAddCity ? setShowAddCity(false) : setShowAddCity(true);
   };
@@ -112,9 +107,4 @@ export const Cards = () => {
       </Container>
     </div>
   );
-};
-Cards.propTypes = {
-  favList: PropTypes.array.isRequired,
-  data: PropTypes.object.isRequired,
-  val: PropTypes.string.isRequired,
 };

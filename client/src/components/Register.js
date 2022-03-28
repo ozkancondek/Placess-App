@@ -1,6 +1,6 @@
 import React from "react";
+import { useState } from "react";
 import { LockOutlined } from "@mui/icons-material";
-
 import {
   Alert,
   Avatar,
@@ -12,15 +12,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
 import { Formik } from "formik";
 import * as Yup from "yup";
-
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CopyRight } from "./CopyRight";
 import { useApi } from "../providers/ApiProvider";
-import { useState } from "react";
 
 const signUpValidationSchema = Yup.object().shape({
   username: Yup.string()
