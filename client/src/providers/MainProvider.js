@@ -9,7 +9,6 @@ export const MainProvider = (props) => {
     !!localStorage.getItem("auth_token")
   );
 
-  const [showComment, setShowComment] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [data, setData] = useState([]);
 
@@ -17,7 +16,7 @@ export const MainProvider = (props) => {
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-
+  console.log(date);
   const localData = () => {
     const response = localStorage.getItem("localData");
 
@@ -42,8 +41,7 @@ export const MainProvider = (props) => {
         localData,
         setPageNum,
         pageNum,
-        setShowComment,
-        showComment,
+
         date,
       }}
     >

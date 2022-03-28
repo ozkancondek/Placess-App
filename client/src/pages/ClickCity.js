@@ -25,11 +25,16 @@ import {
 } from "../styles/ComponentsStyles";
 
 export const ClickCity = () => {
+  const [showComment, setShowComment] = useState(false);
   const { isAuthenticated, date } = useOut();
   const [comments, setComments] = useState([]);
-
+  const navigate = useNavigate();
+  const { setFavList, favList, userName } = useOut();
+  console.log(userName);
   const [filteredCity, setFilteredCity] = useState([]);
   const { getSingleCity } = useApi();
+  const { addNewComment } = useApi();
+  const [commentText, setCommentText] = useState("");
 
   const params = useParams();
 
@@ -64,34 +69,26 @@ export const ClickCity = () => {
   //post the comment
   const handleSubmit = (e) => {
     const postComment = async () => {
-      let comment = {
-        cityId: "2",
-        comment: e.target.children[1].value,
-        username: "anawdawdna", //define a state in mainProvider and set when user signed in- then call it here
+      let commentData = {
+        comment: commentText,
+        userName: userName,
+        cityName: filteredCity.title,
       };
 
       try {
-        //add comment to city
-        let res = await axios.post(
-          "http://localhost:4000/api/cities/comments",
-          comment
-        );
-        let data = res.data;
-        // console.log(data);
+        let res = await addNewComment(commentData);
+        console.log(res);
       } catch (error) {
         console.log(error);
       }
     };
     postComment();
-    e.target.children[1].value = "";
 
+    e.target.reset();
+    setCommentText("");
     e.preventDefault();
   };
   //is auth ise rengi degistirebilsin
-  const navigate = useNavigate();
-  const { setFavList, favList, showComment, setShowComment } = useOut();
-
-  console.log(filteredCity);
 
   const changeColor = (e) => {
     e.stopPropagation();
@@ -139,7 +136,7 @@ export const ClickCity = () => {
             size={30}
             onClick={changeColor}
             style={{
-              color: isFavorite ? "#24a0ed " : "#212121",
+              color: isFavorite && isAuthenticated ? "#24a0ed " : "#212121",
               width: "80px",
               cursor: "pointer",
             }}
@@ -177,13 +174,17 @@ export const ClickCity = () => {
             <Comment>
               <h4>
                 {" "}
-                {<FaUserCircle />} {comment.username} commented on {date}
-                {date.getMounth() + 1}
+                {<FaUserCircle />} {comment.username} commented on{" "}
+                {comment.date}
               </h4>
               <p>{comment.comment} </p>
             </Comment>;
           })}
 
+          <Comment>
+            <h4> {<FaUserCircle />} Anna commented on 12 december</h4>
+            <p>omg... its the best city of my life. thanks newyork </p>
+          </Comment>
           <Comment>
             <h4> {<FaUserCircle />} Anna commented on 12 december</h4>
             <p>omg... its the best city of my life. thanks newyork </p>
@@ -204,6 +205,9 @@ export const ClickCity = () => {
               id="addComment"
               rows="3"
               placeholder="Leave your comment"
+              onChange={(e) => {
+                setCommentText(e.target.value);
+              }}
             ></textarea>
             <Button
               type="submit"

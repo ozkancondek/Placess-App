@@ -36,6 +36,10 @@ export const ApiProvider = ({ children }) => {
     let res = await asyncWrapper(() => initialServices.newPlace(data));
     return res;
   };
+  const addNewComment = async (data) => {
+    let res = await asyncWrapper(() => initialServices.sendComment(data));
+    return res;
+  };
 
   return (
     <ApiContext.Provider
@@ -45,6 +49,7 @@ export const ApiProvider = ({ children }) => {
         userLogin,
         getSingleCity,
         addNewPlace,
+        addNewComment,
       }}
     >
       {children}

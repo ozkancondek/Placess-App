@@ -36,7 +36,13 @@ export const Pagination = () => {
         </p>
         {items.map((num, index) => {
           return (
-            <p key={index} onClick={() => setPageNum(num)}>
+            <p
+              key={index}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setPageNum(num);
+              }}
+            >
               {num}
             </p>
           );

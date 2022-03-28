@@ -11,6 +11,7 @@ import { ClickCity } from "../pages/ClickCity";
 import { Cities } from "../pages/Cities";
 import { useOut } from "../providers/MainProvider";
 import { RoutesContainer } from "../styles/ComponentsStyles";
+import { Profile } from "../pages/Profile";
 
 export const Router = () => {
   const { isAuthenticated } = useOut();
@@ -24,6 +25,10 @@ export const Router = () => {
           <Route
             path="/yourchoices"
             element={isAuthenticated ? <YourChoices /> : <Signin />}
+          />
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <Profile /> : <Signin />}
           />
           <Route
             path="/forum"

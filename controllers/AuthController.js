@@ -59,6 +59,7 @@ exports.authLogin = async (req, res) => {
       .json({ errors: [{ message: "Please check your credentials." }] });
   }
   //-authentication return JSON WEB TOKEN-JWT
+
   jwt.sign(
     { userData },
     process.env.JWT_SECRET_KEY,
@@ -67,7 +68,7 @@ exports.authLogin = async (req, res) => {
       if (err) {
         return res.status(400).json({ errors: [{ message: "Unknown error" }] });
       }
-      res.send(token);
+      res.send({ token: token, username: userData.username });
     }
   );
 };

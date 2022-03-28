@@ -1,11 +1,11 @@
 import React from "react";
 
-import { ChooseCityContainer } from "../styles/ComponentsStyles";
+import { ChooseCityContainer, Text } from "../styles/ComponentsStyles";
 
 export const ChooseCity = () => {
   return (
     <ChooseCityContainer>
-      <p>Add some city to favorites...</p>
+      <Text>Add some city to favorites...</Text>
     </ChooseCityContainer>
   );
 };

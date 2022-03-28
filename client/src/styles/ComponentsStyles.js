@@ -112,6 +112,10 @@ export const ChooseCityContainer = styled.div`
     font-family: Roboto Condensed;
   }
 `;
+export const Text = styled.div`
+  color: rgb(225, 225, 225);
+  font-size: 36px;
+`;
 //error component
 export const ErrorContainer = styled.div`
   display: flex;

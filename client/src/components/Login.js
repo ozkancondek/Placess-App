@@ -52,9 +52,11 @@ const Login = () => {
 
       try {
         let res = await userLogin(user);
-        localStorage.setItem("auth_token", res);
-        setIsAutenticated(!!localStorage.getItem("auth_token"));
 
+        localStorage.setItem("auth_token", res.token);
+        setIsAutenticated(!!localStorage.getItem("auth_token"));
+        localStorage.setItem("username", res.username);
+        localStorage.getItem("username");
         navigate("/");
       } catch (error) {
         setErrorMessage(error.response.data.errors[0].message);

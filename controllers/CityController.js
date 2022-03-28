@@ -14,11 +14,11 @@ exports.addNewPlace = async (req, res) => {
 };
 
 exports.addComment = async (req, res) => {
-  const { comment, username, cityName } = req.body;
+  const { comment, userName, cityName } = req.body;
   //save comment to db
   const newComment = new Comment({
     comment,
-    username,
+    userName,
     cityName,
   });
   await newComment.save();

@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 import "../styles/Navigation.css";
-import { Container, Form, FormControl, Nav, Navbar } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  FormControl,
+  Nav,
+  Navbar,
+  Dropdown,
+  Button,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSearch } from "../providers/SearchProvider";
@@ -21,7 +29,9 @@ export const Navigation = () => {
 
   const signOut = () => {
     localStorage.removeItem("auth_token");
+    localStorage.removeItem("username");
     setIsAutenticated(false);
+
     navigate("/signin");
   };
 
@@ -108,19 +118,37 @@ export const Navigation = () => {
               </Nav.Link>
             </>
           ) : (
-            <Nav.Link eventKey="signin" onClick={() => signOut()}>
-              Sign-out
-              {
-                <FaUserCircle
-                  style={{
-                    marginLeft: "15px",
-                    width: "30px",
-                    height: "30px",
-                    color: "white",
-                  }}
-                />
-              }
-            </Nav.Link>
+            <>
+              <Nav.Link eventKey="signin" onClick={() => signOut()}>
+                Hello {localStorage.getItem("username")}!
+              </Nav.Link>
+
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="secondary"
+                  id="dropdown-button-dark-example1"
+                >
+                  <FaUserCircle
+                    style={{
+                      marginLeft: "15px",
+                      width: "30px",
+                      height: "30px",
+                      color: "white",
+                    }}
+                  />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Button variant="light" onClick={() => navigate("/profile")}>
+                    Profile
+                  </Button>
+                  <br />
+                  <Button variant="light" onClick={() => signOut()}>
+                    Signout
+                  </Button>
+                </Dropdown.Menu>
+              </Dropdown>
+            </>
           )}
 
           <div className="toggleDiv">{/*  <Toggle /> */}</div>
