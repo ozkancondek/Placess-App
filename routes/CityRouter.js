@@ -20,16 +20,10 @@ router.post("/newplace", CityController.addNewPlace);
  */
 router.post("/addcomment", CityController.addComment);
 /**
- * @route post /api/city/forum
+ * @route get /api/city/comments
  * @desc show all comments
  * @access Private
  */
-router.get("/forum", CityController.showAllComments);
-/**
- * @route post /api/city/forum/:id
- * @desc show comment for single city
- * @access Private
- */
-router.get("/forum/city", CityController.getCommentsForCity);
+router.get("/comments", CityController.showAllComments);
 
 module.exports = router;

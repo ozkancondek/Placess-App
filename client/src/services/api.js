@@ -34,6 +34,10 @@ export const sendComment = async (data) => {
   let res = await axios.post("http://localhost:5000/api/city/addcomment", data);
   return res.data;
 };
+export const getComments = async () => {
+  let res = await axios(`http://localhost:5000/api/city/comments/`);
+  return res.data;
+};
 
 export const initialServices = {
   fetchData,
@@ -42,4 +46,5 @@ export const initialServices = {
   fetchSingleData,
   newPlace,
   sendComment,
+  getComments,
 };

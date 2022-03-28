@@ -26,28 +26,18 @@ import {
 
 export const ClickCity = () => {
   const [showComment, setShowComment] = useState(false);
-  const { isAuthenticated, date } = useOut();
+  const { isAuthenticated } = useOut();
   const [comments, setComments] = useState([]);
+
   const navigate = useNavigate();
-  const { setFavList, favList, userName } = useOut();
-  console.log(userName);
+  const { setFavList, favList } = useOut();
+
   const [filteredCity, setFilteredCity] = useState([]);
   const { getSingleCity } = useApi();
-  const { addNewComment } = useApi();
+  const { addNewComment, fetchAllComments } = useApi();
   const [commentText, setCommentText] = useState("");
-
+  const userName = localStorage.getItem("username");
   const params = useParams();
-
-  /*   const commentsById = async (id) => {
-    try {
-      //get comments
-      let res = await axios("http://localhost:4000/api/cities/comments/" + id);
-
-      setComments(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }; */
 
   //get single  cities and assign it to filtered data
   const fetch = async () => {
@@ -56,13 +46,28 @@ export const ClickCity = () => {
       let res = await getSingleCity(params.cityid);
 
       setFilteredCity(res.CityDetails);
+      console.log(filteredCity);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const commentsByName = async () => {
+    try {
+      //get comments
+      let res = await fetchAllComments();
+
+      setComments(
+        res.allComments.filter((c) => c.cityName === filteredCity.title)
+      );
+      console.log(comments);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    // commentsById(filteredCity.id);
+    commentsByName();
     fetch();
   }, []);
 
@@ -83,6 +88,7 @@ export const ClickCity = () => {
       }
     };
     postComment();
+    commentsByName();
 
     e.target.reset();
     setCommentText("");
@@ -170,25 +176,24 @@ export const ClickCity = () => {
       </DetailsBar>
       {showComment && (
         <CommentContainer>
-          {comments.map((comment) => {
+          {comments.length !== 0 ? (
+            comments.map((comment) => {
+              return (
+                <Comment>
+                  <h4>
+                    {<FaUserCircle />} {comment.userName} commented on{" "}
+                    {comment.addDate.slice(0, 10)} about {comment.cityName}
+                  </h4>
+                  <p>{comment.comment} </p>
+                </Comment>
+              );
+            })
+          ) : (
             <Comment>
-              <h4>
-                {" "}
-                {<FaUserCircle />} {comment.username} commented on{" "}
-                {comment.date}
-              </h4>
-              <p>{comment.comment} </p>
-            </Comment>;
-          })}
+              <p> There is no comment for this place... </p>
+            </Comment>
+          )}
 
-          <Comment>
-            <h4> {<FaUserCircle />} Anna commented on 12 december</h4>
-            <p>omg... its the best city of my life. thanks newyork </p>
-          </Comment>
-          <Comment>
-            <h4> {<FaUserCircle />} Anna commented on 12 december</h4>
-            <p>omg... its the best city of my life. thanks newyork </p>
-          </Comment>
           <Button
             variant="outline-secondary"
             style={{ marginTop: "10px" }}
@@ -198,10 +203,10 @@ export const ClickCity = () => {
           >
             Go to Forum
           </Button>
-          <form onSubmit={handleSubmit} class="form-group shadow-textarea">
-            <label for="addComment"></label>
+          <form onSubmit={handleSubmit} className="form-group shadow-textarea">
+            <br />
             <textarea
-              class="form-control z-depth-1"
+              className="form-control z-depth-1"
               id="addComment"
               rows="3"
               placeholder="Leave your comment"

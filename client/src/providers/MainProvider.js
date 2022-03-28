@@ -13,10 +13,7 @@ export const MainProvider = (props) => {
   const [data, setData] = useState([]);
 
   const [favList, setFavList] = useState([]);
-  var today = new Date();
-  var date =
-    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  console.log(date);
+
   const localData = () => {
     const response = localStorage.getItem("localData");
 
@@ -41,8 +38,6 @@ export const MainProvider = (props) => {
         localData,
         setPageNum,
         pageNum,
-
-        date,
       }}
     >
       {props.children}

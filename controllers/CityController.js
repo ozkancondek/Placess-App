@@ -34,20 +34,3 @@ exports.showAllComments = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-exports.getCommentsForCity = async (req, res) => {
-  const { cityName } = req.body;
-
-  try {
-    const SingleCityComments = await Comment.find({
-      cityName: cityName,
-    });
-
-    if (!SingleCityComments) {
-      return res.send("there is no comment");
-    }
-    res.status(200).json({ SingleCityComments });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-};
