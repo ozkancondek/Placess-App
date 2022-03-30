@@ -30,9 +30,8 @@ const signUpValidationSchema = Yup.object().shape({
 });
 
 const Login = () => {
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const { setIsAutenticated } = useOut();
+  const { setIsAutenticated, errorMessage } = useOut();
   const { userLogin } = useApi();
   const initialValues = {
     email: "",
@@ -48,13 +47,14 @@ const Login = () => {
 
       try {
         let res = await userLogin(user);
-        localStorage.setItem("auth_token", res.token);
+
+        localStorage.setItem("auth_token", res.data.token);
         setIsAutenticated(!!localStorage.getItem("auth_token"));
-        localStorage.setItem("username", res.username);
+        localStorage.setItem("username", res.data.username);
         localStorage.getItem("username");
         navigate("/");
       } catch (error) {
-        setErrorMessage(error.response.data.errors[0].message);
+        console.log(error);
       }
     };
     authfFunc();

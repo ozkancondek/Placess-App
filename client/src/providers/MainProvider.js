@@ -5,8 +5,10 @@ export const MainProvider = (props) => {
   const [isAuthenticated, setIsAutenticated] = useState(
     !!localStorage.getItem("auth_token")
   );
+  console.log(isAuthenticated);
   const [pageNum, setPageNum] = useState(1);
   const [favList, setFavList] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const localData = () => {
     const response = localStorage.getItem("localData");
@@ -31,6 +33,8 @@ export const MainProvider = (props) => {
         localData,
         setPageNum,
         pageNum,
+        setErrorMessage,
+        errorMessage,
       }}
     >
       {props.children}

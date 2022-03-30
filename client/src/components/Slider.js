@@ -1,9 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Button, Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useApi } from "../providers/ApiProvider";
+import { getRandomCityForSlider } from "../services/getRandomPlaceForSlider";
+import { SliderButtonContainer } from "../styles/ComponentsStyles";
 
 const Slider = () => {
   const navigate = useNavigate();
@@ -14,26 +16,23 @@ const Slider = () => {
     const getAll = async () => {
       try {
         let res = await getAllCities();
-        console.log(res);
+
         setPlaces(res.cityList);
       } catch (error) {
         console.log(error);
       }
     };
+
     getAll();
   }, [getAllCities]);
 
   //take random 6 cities from data
-  let randomCityIdArray = [];
-  for (let i = 0; i <= 5; i++) {
-    randomCityIdArray.push(
-      places[Math.floor(Math.random() * (places.length + 1))]
-    );
-  }
+  const randomCityIdArray = getRandomCityForSlider(6, places);
+
   //function for every corousel item
-  const slide = (city) => {
+  const slide = (city, index) => {
     return (
-      <Carousel.Item interval={5000} key={city._id}>
+      <Carousel.Item interval={5000} key={index}>
         <img
           style={{ height: "95vh" }}
           className="d-block w-100"
@@ -49,12 +48,18 @@ const Slider = () => {
   };
   return (
     <div style={{ textAlign: "center" }}>
-      {/* <Carousel fade>{randomCityIdArray?.map((c) => slide(c))}</Carousel>
-      <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+      {!!randomCityIdArray.filter(Boolean).length ? (
+        <Carousel fade>
+          {randomCityIdArray?.map((c, index) => slide(c, index))}
+        </Carousel>
+      ) : (
+        <CircularProgress />
+      )}
+      <SliderButtonContainer>
         <Button onClick={() => navigate("/cities")} variant="outline-secondary">
           Discover More
         </Button>
-      </div> */}
+      </SliderButtonContainer>
     </div>
   );
 };

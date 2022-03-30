@@ -111,7 +111,7 @@ export const Navigation = () => {
             </>
           ) : (
             <>
-              <Nav.Link eventKey="signin" onClick={() => signOut()}>
+              <Nav.Link eventKey="profile">
                 Hello {localStorage.getItem("username")}!
               </Nav.Link>
 

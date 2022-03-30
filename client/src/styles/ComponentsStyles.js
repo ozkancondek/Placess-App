@@ -120,18 +120,11 @@ export const Text = styled.div`
 export const ErrorContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 
   height: 95vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("https://cdn.pixabay.com/photo/2017/01/09/12/56/mistake-1966460_960_720.jpg");
 `;
-export const ErrorText = styled.div`
-  text-align: center;
-  margin-bottom: 50px;
-`;
+
 //pagination bar
 export const PaginationBar = styled.div`
   margin: auto;
@@ -315,4 +308,11 @@ export const AddCityComponentContainer = styled.div`
   margin: auto;
   boxshadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 10px;
+`;
+
+//slider button container
+
+export const SliderButtonContainer = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
