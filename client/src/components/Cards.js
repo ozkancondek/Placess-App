@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Container, Row, Spinner } from "react-bootstrap";
 import {
   AddNewPlaceButton,
   ImageContainer,
@@ -103,7 +103,13 @@ export const Cards = () => {
       </div>
 
       <Container className="text-center mt-4 height:500px">
-        <Row className="d-flex justify-content-center">{filteredData}</Row>
+        <Row className="d-flex justify-content-center">
+          {filteredData.length === 0 ? (
+            <Spinner animation="border" />
+          ) : (
+            filteredData
+          )}
+        </Row>
       </Container>
     </div>
   );

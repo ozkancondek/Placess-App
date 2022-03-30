@@ -37,7 +37,6 @@ export const ClickCity = () => {
       let res = await getSingleCity(params.cityid);
 
       setFilteredCity(res.CityDetails);
-      console.log(filteredCity);
     } catch (error) {
       console.log(error);
     }
@@ -51,9 +50,8 @@ export const ClickCity = () => {
       setComments(
         res.allComments?.filter((c) => c.cityName === filteredCity.title)
       );
-      console.log(comments);
     } catch (error) {
-      console.log(error);
+      //  console.log(error);
     }
   };
 
@@ -79,7 +77,7 @@ export const ClickCity = () => {
       }
     };
     postComment();
-    commentsByName();
+    //commentsByName();
 
     e.target.reset();
     setCommentText("");
@@ -164,9 +162,10 @@ export const ClickCity = () => {
           <RiInstagramFill size={30} style={{ cursor: "pointer" }} />
         </IconContainer>
       </DetailsBar>
-      {showComment && (
+      {true && (
         <CommentContainer>
           {comments.length !== 0 ? (
+            /* 
             comments.map((comment) => {
               return (
                 <Comment>
@@ -177,7 +176,7 @@ export const ClickCity = () => {
                   <p>{comment.comment} </p>
                 </Comment>
               );
-            })
+            }) */ <>ozkan</>
           ) : (
             <Comment>
               <p> There is no comment for this place... </p>

@@ -23,8 +23,6 @@ export const Forum = () => {
     getComments();
   });
 
-  console.log(comments);
-
   return (
     <div>
       {comments.map((c) => {
