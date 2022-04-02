@@ -28,7 +28,7 @@ export const login = async (data) => {
 };
 export const newPlace = async (data) => {
   let res = await axios.post("http://localhost:5000/api/city/newplace", data);
-  return res.data;
+  return res;
 };
 export const sendComment = async (data) => {
   let res = await axios.post("http://localhost:5000/api/city/addcomment", data);

@@ -240,6 +240,15 @@ export const CardContainer = styled.div`
   }
 `;
 
+export const CardImage = styled.div`
+  background-image: url(${(props) => props.img});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 360px;
+  width: 300px;
+`;
+
 //ClickCity component
 
 export const ClickCityContainer = styled.div`

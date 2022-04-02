@@ -11,10 +11,9 @@ import { Card } from "./Card";
 import { useApi } from "../providers/ApiProvider";
 import { useSearch } from "../providers/SearchProvider";
 import { AddNewPlace } from "./AddNewPlace";
+import { urls } from "../assets/url";
 
 export const Cards = () => {
-  const url3 =
-    "https://cdn.create.vista.com/api/media/medium/211309022/stock-photo-photography?token=";
   const { isAuthenticated } = useOut();
   const { favList, pageNum } = useOut();
   const { getAllCities } = useApi();
@@ -81,7 +80,7 @@ export const Cards = () => {
   return (
     <div>
       <TextPhotoContainer>
-        <ImageContainer img={url3}></ImageContainer>
+        <ImageContainer img={urls.url9}></ImageContainer>
         <TextContainer>
           <p>
             There are many places in the world that need to be explored. With
