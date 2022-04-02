@@ -14,7 +14,7 @@ export const fetchData = async (pageNum) => {
 
 export const fetchSingleData = async (id) => {
   let res = await axios(`http://localhost:5000/api/cities/details/${id}`);
-  return res.data;
+  return res;
 };
 
 export const register = async (data) => {
@@ -32,11 +32,11 @@ export const newPlace = async (data) => {
 };
 export const sendComment = async (data) => {
   let res = await axios.post("http://localhost:5000/api/city/addcomment", data);
-  return res.data;
+  return res;
 };
 export const getComments = async () => {
   let res = await axios(`http://localhost:5000/api/city/comments/`);
-  return res.data;
+  return res;
 };
 
 export const initialServices = {

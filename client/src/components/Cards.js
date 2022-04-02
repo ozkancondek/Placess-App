@@ -54,7 +54,7 @@ export const Cards = () => {
       .map((card, index) => {
         return (
           <Card
-            isFavorite={favList.includes(card.id)}
+            isFavorite={favList.includes(card._id)}
             card={card}
             key={index}
             id={card._id}
@@ -66,7 +66,7 @@ export const Cards = () => {
     filteredData = pagedPlaces.map((card, index) => {
       return (
         <Card
-          isFavorite={favList.includes(card.id)}
+          isFavorite={favList.includes(card._id)}
           card={card}
           key={index}
           id={card._id}

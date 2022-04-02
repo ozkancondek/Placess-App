@@ -24,10 +24,10 @@ export const ClickCity = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [showComment, setShowComment] = useState(false);
-  const [isAuthenticated, comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
   const [filteredCity, setFilteredCity] = useState([]);
   const [commentText, setCommentText] = useState("");
-  const { setFavList, favList } = useOut();
+  const { setFavList, favList, isAuthenticated } = useOut();
   const { addNewComment, fetchAllComments, getSingleCity } = useApi();
   const userName = localStorage.getItem("username");
 
@@ -36,29 +36,25 @@ export const ClickCity = () => {
     try {
       let res = await getSingleCity(params.cityid);
 
-      setFilteredCity(res.CityDetails);
+      setFilteredCity(res.data.CityDetails);
     } catch (error) {
       console.log(error);
     }
   };
 
+  //get  city comments
   const commentsByName = async () => {
     try {
       //get comments
       let res = await fetchAllComments();
       //filter them
       setComments(
-        res.allComments?.filter((c) => c.cityName === filteredCity.title)
+        res.data.allComments.filter((c) => c.cityName === filteredCity.title)
       );
     } catch (error) {
-      //  console.log(error);
+      console.log(error);
     }
   };
-
-  useEffect(() => {
-    commentsByName();
-    fetch();
-  });
 
   //post the comment
   const handleSubmit = (e) => {
@@ -75,9 +71,9 @@ export const ClickCity = () => {
       } catch (error) {
         console.log(error);
       }
+      commentsByName();
     };
     postComment();
-    //commentsByName();
 
     e.target.reset();
     setCommentText("");
@@ -113,6 +109,10 @@ export const ClickCity = () => {
   };
 
   const isFavorite = favList.includes(filteredCity._id);
+  useEffect(() => {
+    fetch();
+    commentsByName();
+  }, []);
 
   return (
     <ClickCityContainer>
@@ -162,13 +162,12 @@ export const ClickCity = () => {
           <RiInstagramFill size={30} style={{ cursor: "pointer" }} />
         </IconContainer>
       </DetailsBar>
-      {true && (
+      {showComment && (
         <CommentContainer>
           {comments.length !== 0 ? (
-            /* 
-            comments.map((comment) => {
+            comments.map((comment, index) => {
               return (
-                <Comment>
+                <Comment key={index}>
                   <h4>
                     {<FaUserCircle />} {comment.userName} commented on{" "}
                     {comment.addDate.slice(0, 10)} about {comment.cityName}
@@ -176,7 +175,7 @@ export const ClickCity = () => {
                   <p>{comment.comment} </p>
                 </Comment>
               );
-            }) */ <>ozkan</>
+            })
           ) : (
             <Comment>
               <p> There is no comment for this place... </p>

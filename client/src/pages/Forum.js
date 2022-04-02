@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentDots, FaUserCircle } from "react-icons/fa";
 import { GiWorld } from "react-icons/gi";
@@ -13,7 +14,7 @@ export const Forum = () => {
     try {
       let res = await fetchAllComments();
 
-      setComments(res.allComments);
+      setComments(res.data.allComments);
     } catch (error) {
       console.log(error);
     }
@@ -25,28 +26,34 @@ export const Forum = () => {
 
   return (
     <div>
-      {comments.map((c) => {
-        return (
-          <div className="main-container">
-            <div className="comment-card">
-              <div className="header">
-                <h4>
-                  {<FaUserCircle />}
-                  {c.userName} commented about {c.cityName}
-                </h4>
-                <h4> {c.addDate.slice(0, 10)}</h4>
-              </div>
-              <p>{c.comment}</p>
-              <div className="icon-bar">
-                <AiOutlineLike className="icon" />
-                <AiOutlineDislike className="icon" />
-                <FaRegCommentDots className="icon" />
-                <GiWorld className="icon" />
+      {comments.length === 0 ? (
+        <div className="main-container">
+          <Spinner animation="border" />
+        </div>
+      ) : (
+        comments.map((c, index) => {
+          return (
+            <div key={index} className="main-container">
+              <div className="comment-card">
+                <div className="header">
+                  <h4>
+                    {<FaUserCircle />}
+                    {c.userName} commented about {c.cityName}
+                  </h4>
+                  <h4> {c.addDate.slice(0, 10)}</h4>
+                </div>
+                <p>{c.comment}</p>
+                <div className="icon-bar">
+                  <AiOutlineLike className="icon" />
+                  <AiOutlineDislike className="icon" />
+                  <FaRegCommentDots className="icon" />
+                  <GiWorld className="icon" />
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 };
