@@ -59,7 +59,7 @@ export const Home = () => {
           <p>Nature</p>
         </CardContainer>
       </GridContainer>
-      <Slider />
+      {/*   <Slider /> */}
       <TextContainer2>
         <p> “A journey of a thousand miles begins with a single step”</p>
       </TextContainer2>
