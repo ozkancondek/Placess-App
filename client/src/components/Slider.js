@@ -47,7 +47,7 @@ const Slider = () => {
     );
   };
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", width: "90%", margin: "auto" }}>
       {!!randomCityIdArray.filter(Boolean).length ? (
         <Carousel fade>
           {randomCityIdArray?.map((c, index) => slide(c, index))}
