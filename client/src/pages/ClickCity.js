@@ -51,6 +51,7 @@ export const ClickCity = () => {
       setComments(
         res.data.allComments.filter((c) => c.cityName === filteredCity.title)
       );
+      console.log(comments);
     } catch (error) {
       console.log(error);
     }
