@@ -16,7 +16,7 @@ export const ThemeProvider = ({ children }) => {
     gradient: "linear-gradient(#091236, #1E215D)",
   };
 
-  //states for night mood button
+  //states for night mood button and constrol state
   const [checked, setChecked] = useState(false);
   const [theme, setTheme] = useState(lightTheme);
 
