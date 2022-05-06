@@ -51,7 +51,6 @@ export const ClickCity = () => {
       setComments(
         res.data.allComments.filter((c) => c.cityName === filteredCity.title)
       );
-      console.log(comments);
     } catch (error) {
       console.log(error);
     }
@@ -102,17 +101,14 @@ export const ClickCity = () => {
   };
 
   const commentFunc = () => {
-    if (showComment) {
-      setShowComment(false);
-    } else {
-      setShowComment(true);
-    }
+    setShowComment((prev) => !prev);
+
+    commentsByName();
   };
 
   const isFavorite = favList.includes(filteredCity._id);
   useEffect(() => {
     fetch();
-    commentsByName();
   }, []);
 
   return (

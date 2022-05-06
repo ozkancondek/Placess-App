@@ -9,17 +9,29 @@ import {
   Button,
 } from "react-bootstrap";
 import { FaRaspberryPi, FaUserCircle } from "react-icons/fa";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 //bootstrap style import
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSearch } from "../providers/SearchProvider";
 import { useOut } from "../providers/MainProvider";
+import { useTheme } from "../providers/ThemeProvider";
 
 export const Navigation = () => {
   const { setVal } = useSearch();
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, setIsAutenticated } = useOut();
+  const { checked, setChecked, setTheme, darkTheme, lightTheme } = useTheme();
+
+  const nightMood = () => {
+    setChecked(true);
+    setTheme(darkTheme);
+  };
+  const dayMood = () => {
+    setChecked(false);
+    setTheme(lightTheme);
+  };
 
   //set value of the search input area
   const filterCity = (e) => {
@@ -99,6 +111,13 @@ export const Navigation = () => {
               aria-label="Search"
             />
           </Form>
+          <Nav.Link>
+            {checked ? (
+              <BsFillSunFill size={22} onClick={dayMood} />
+            ) : (
+              <BsFillMoonFill size={20} onClick={nightMood} />
+            )}
+          </Nav.Link>
           {!isAuthenticated ? (
             <>
               <Nav.Link eventKey="signin">Sign-in</Nav.Link>

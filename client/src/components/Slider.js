@@ -12,19 +12,18 @@ const Slider = () => {
   const { getAllCities } = useApi();
   const [places, setPlaces] = useState([]);
 
+  const getAll = async () => {
+    try {
+      let res = await getAllCities();
+
+      setPlaces(res.cityList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const getAll = async () => {
-      try {
-        let res = await getAllCities();
-
-        setPlaces(res.cityList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getAll();
-  }, [getAllCities]);
+  }, []);
 
   //take random 6 cities from data
   const randomCityIdArray = getRandomCityForSlider(6, places);
