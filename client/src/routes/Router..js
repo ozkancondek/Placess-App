@@ -39,7 +39,7 @@ export const Router = () => {
           <Route path="/clickcity/:cityid" element={<ClickCity />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/city/rate" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
         </Routes>

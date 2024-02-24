@@ -51,6 +51,7 @@ const Login = () => {
         localStorage.setItem("auth_token", res.data.token);
         setIsAutenticated(!!localStorage.getItem("auth_token"));
         localStorage.setItem("username", res.data.username);
+        localStorage.setItem("email", values.email);
         localStorage.getItem("username");
         navigate("/");
       } catch (error) {

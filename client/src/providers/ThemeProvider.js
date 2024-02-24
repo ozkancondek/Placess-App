@@ -4,7 +4,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const lightTheme = {
     body: "#E2E2E2",
-    text: "#363537",
+    text: "#59575b",
 
     gradient: "linear-gradient(#39598A, #79D7ED)",
   };

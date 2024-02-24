@@ -26,4 +26,17 @@ router.post("/addcomment", CityController.addComment);
  */
 router.get("/comments", CityController.showAllComments);
 
+/**
+ * @route post /api/city/rate
+ * @desc add rate
+ * @access Private
+ */
+router.post("/rate", CityController.addRate);
+/**
+ * @route get /api/city/rates
+ * @desc show all rates
+ * @access Private
+ */
+router.get("/rates", CityController.showAllRates);
+
 module.exports = router;

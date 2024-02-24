@@ -19,10 +19,10 @@ export const Footer = () => {
           <p className="footer-links">
             <a href="/ ">Home</a> - <a href="/forum">Forum</a> -{" "}
             <a href="/about">About</a> - <a href="/cities">Places</a> -
-            <a href="/contact">Contact</a>
+            <a href="/contact">Rate Us</a>
           </p>
 
-          <p className="footer-company-name">BlueBerry © 2021</p>
+          <p className="footer-company-name">BlueBerry © 2024</p>
 
           <div className="footer-icons">
             <a href="#">

@@ -40,6 +40,14 @@ export const ApiProvider = ({ children }) => {
     let res = await asyncWrapper(() => initialServices.sendComment(data));
     return res;
   };
+  const addNewRate = async (data) => {
+    let res = await asyncWrapper(() => initialServices.addNewRate(data));
+    return res;
+  };
+  const fetchAllRates = async () => {
+    let res = await asyncWrapper(() => initialServices.getRates);
+    return res;
+  };
   const fetchAllComments = async () => {
     let res = await asyncWrapper(() => initialServices.getComments());
     return res;
@@ -55,6 +63,8 @@ export const ApiProvider = ({ children }) => {
         addNewPlace,
         addNewComment,
         fetchAllComments,
+        fetchAllRates,
+        addNewRate,
       }}
     >
       {children}

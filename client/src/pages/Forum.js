@@ -14,7 +14,7 @@ export const Forum = () => {
     try {
       let res = await fetchAllComments();
 
-      setComments(res.data.allComments);
+      setComments(res.data.allComments.reverse());
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +22,7 @@ export const Forum = () => {
 
   useEffect(() => {
     getComments();
-  });
+  }, []);
 
   return (
     <div>
@@ -37,7 +37,7 @@ export const Forum = () => {
               <div className="comment-card">
                 <div className="header">
                   <h4>
-                    {<FaUserCircle />}
+                    {<FaUserCircle style={{ marginRight: "5px" }} />}
                     {c.userName} commented about {c.cityName}
                   </h4>
                   <h4> {c.addDate.slice(0, 10)}</h4>

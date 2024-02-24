@@ -41,6 +41,7 @@ export const Navigation = () => {
   const signOut = () => {
     localStorage.removeItem("auth_token");
     localStorage.removeItem("username");
+    localStorage.removeItem("email");
     setIsAutenticated(false);
     navigate("/signin");
   };
@@ -87,9 +88,8 @@ export const Navigation = () => {
                 Forum
               </Nav.Link>
             )}
-
-            <Nav.Link className="underline" eventKey="contact">
-              Contact
+            <Nav.Link className="underline" eventKey="city/rate">
+              Rate Us
             </Nav.Link>
             <Nav.Link className="underline" eventKey="about">
               About
@@ -98,7 +98,8 @@ export const Navigation = () => {
           <Form
             className="d-flex"
             style={{
-              paddingTop: "20px",
+              paddingTop: "10px",
+              paddingRight: "10px",
               visibility:
                 location.pathname === "/cities" ? "visible" : "hidden",
             }}
@@ -111,7 +112,7 @@ export const Navigation = () => {
               aria-label="Search"
             />
           </Form>
-          <Nav.Link>
+          <Nav.Link style={{ marginRight: "10px", marginTop: "6px" }}>
             {checked ? (
               <BsFillSunFill size={22} onClick={dayMood} />
             ) : (
@@ -120,9 +121,24 @@ export const Navigation = () => {
           </Nav.Link>
           {!isAuthenticated ? (
             <>
-              <Nav.Link eventKey="signin">Sign-in</Nav.Link>
               <Nav.Link
-                style={{ border: "1px solid white", borderRadius: "5px" }}
+                style={{
+                  marginRight: "10px",
+                  marginTop: "8px",
+                  color: "#99979b",
+                }}
+                eventKey="signin"
+              >
+                Sign-in
+              </Nav.Link>
+              <Nav.Link
+                style={{
+                  color: "#99979b",
+                  border: "1px solid white",
+                  padding: "3px",
+                  borderRadius: "5px",
+                  marginTop: "8px",
+                }}
                 eventKey="signup"
               >
                 Sign-up
@@ -130,7 +146,13 @@ export const Navigation = () => {
             </>
           ) : (
             <>
-              <Nav.Link eventKey="profile">
+              <Nav.Link
+                style={{
+                  marginRight: "10px",
+                  marginTop: "6px",
+                }}
+                eventKey="profile"
+              >
                 Hello {localStorage.getItem("username")}!
               </Nav.Link>
 
@@ -138,6 +160,7 @@ export const Navigation = () => {
                 <Dropdown.Toggle
                   variant="secondary"
                   id="dropdown-button-dark-example1"
+                  style={{ border: "none", background: "none" }}
                 >
                   <FaUserCircle
                     style={{
@@ -150,11 +173,19 @@ export const Navigation = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Button variant="light" onClick={() => navigate("/profile")}>
+                  {/*          <Button
+                    style={{ border: "none", background: "none" }}
+                    variant="light"
+                    onClick={() => navigate("/profile")}
+                  >
                     Profile
                   </Button>
-                  <br />
-                  <Button variant="light" onClick={() => signOut()}>
+                  <br /> */}
+                  <Button
+                    style={{ border: "none", background: "none" }}
+                    variant="light"
+                    onClick={() => signOut()}
+                  >
                     Signout
                   </Button>
                 </Dropdown.Menu>

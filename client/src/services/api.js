@@ -40,6 +40,14 @@ export const getComments = async () => {
   let res = await API(`/api/city/comments/`);
   return res;
 };
+export const addNewRate = async (data) => {
+  let res = await API.post("/api/city/rate", data);
+  return res;
+};
+export const getRates = async () => {
+  let res = await API(`/api/city/rates`);
+  return res;
+};
 
 export const initialServices = {
   fetchData,
@@ -49,4 +57,6 @@ export const initialServices = {
   newPlace,
   sendComment,
   getComments,
+  getRates,
+  addNewRate,
 };
