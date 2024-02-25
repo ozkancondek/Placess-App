@@ -1,6 +1,6 @@
 const express = require("express");
 
-const connectDB = require("../models/connectDB");
+const connectDB = require("./models/connectDB");
 
 var cors = require("cors");
 
