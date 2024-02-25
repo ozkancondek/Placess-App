@@ -61,6 +61,7 @@ function Register() {
         let res = await userRegister(user);
         setMessage(res);
       } catch (error) {
+        window.location.reload();
         console.log(error);
         setErrorMessage(error);
       }

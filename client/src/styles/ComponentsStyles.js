@@ -16,14 +16,11 @@ export const RoutesContainer = styled.div`
 export const TextPhotoContainer = styled.div`
   display: flex;
   flex-direction: row;
- 
   justify-content: center;
-  width: auto
+  width: 100%;
   border: 2px solid black;
   margin: auto;
   margin-top: 50px;
-  
-   
 `;
 
 export const ImageContainer = styled.div`

@@ -30,6 +30,7 @@ const signUpValidationSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const [loginFail, setLoginFail] = useState("");
   const navigate = useNavigate();
   const { setIsAutenticated, errorMessage } = useOut();
   const { userLogin } = useApi();
@@ -55,6 +56,7 @@ const Login = () => {
         localStorage.getItem("username");
         navigate("/");
       } catch (error) {
+        window.location.reload();
         console.log(error);
       }
     };
@@ -83,7 +85,8 @@ const Login = () => {
       <Typography sx={{ margin: "1rem" }} variant="h4">
         Sign In
       </Typography>
-      {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+      {/* {errorMessage && <Alert severity="error">{errorMessage}</Alert>} */}
+      {loginFail && <Alert severity="error">{loginFail}</Alert>}
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
