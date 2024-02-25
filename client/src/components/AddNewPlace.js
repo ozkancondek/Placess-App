@@ -46,6 +46,7 @@ export const AddNewPlace = ({ setShowAddCity }) => {
             onChange={(e) => {
               setImgUrl(e.target.value);
             }}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -56,6 +57,7 @@ export const AddNewPlace = ({ setShowAddCity }) => {
             onChange={(e) => {
               setPlaceName(e.target.value);
             }}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -66,6 +68,7 @@ export const AddNewPlace = ({ setShowAddCity }) => {
             onChange={(e) => {
               setDesc(e.target.value);
             }}
+            required
           />
         </Form.Group>
 
