@@ -2,7 +2,7 @@ const express = require("express");
 const { check } = require("express-validator");
 const router = express.Router();
 
-const CitiesController = require("../../controllers/CitiesController");
+const CitiesController = require("../controllers/CitiesController");
 
 const validations = require("../middleware/validationMiddleware");
 
