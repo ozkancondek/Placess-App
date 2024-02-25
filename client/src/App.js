@@ -17,17 +17,17 @@ const App = () => {
 };
 
 const Main = () => (
-  <ErrorBoundary FallbackComponent={Error}>
-    <ThemeProvider>
-      <MainProvider>
-        <SearchProvider>
-          <ApiProvider>
-            <App />
-          </ApiProvider>
-        </SearchProvider>
-      </MainProvider>
-    </ThemeProvider>
-  </ErrorBoundary>
+  /*  <ErrorBoundary FallbackComponent={Error}> */
+  <ThemeProvider>
+    <MainProvider>
+      <SearchProvider>
+        <ApiProvider>
+          <App />
+        </ApiProvider>
+      </SearchProvider>
+    </MainProvider>
+  </ThemeProvider>
+  /*  </ErrorBoundary> */
 );
 
 export default Main;
