@@ -88,7 +88,7 @@ export const Contact = () => {
             type="email"
             placeholder="name@example.com"
             defaultValue={email}
-            readOnly
+            readOnly={email ? true : false}
           />
         </FloatingLabel>
         <br />
