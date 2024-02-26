@@ -48,30 +48,42 @@ export const Cards = () => {
   var filteredData = [];
   //if the user search, filter cities from all cities
   if (val) {
-    filteredData = places
-      .filter((card) => card.title.toLowerCase().includes(val.toLowerCase()))
-      .map((card, index) => {
-        return (
-          <Card
-            isFavorite={favList.includes(card._id)}
-            card={card}
-            key={index}
-            id={card._id}
-          />
-        );
-      });
-  } else {
-    //otherwise just show cities with page number
-    filteredData = pagedPlaces.map((card, index) => {
-      return (
+    const lowerCaseVal = val.toLowerCase();
+    const filteredCards = places.filter((card) =>
+      card.title.toLowerCase().includes(lowerCaseVal)
+    );
+
+    if (filteredCards.length > 0) {
+      // If there are cards that match the search term, display them.
+      filteredData = filteredCards.map((card, index) => (
         <Card
           isFavorite={favList.includes(card._id)}
           card={card}
           key={index}
           id={card._id}
         />
-      );
-    });
+      ));
+    } else {
+      // If no cards match the search term, execute the "else" code.
+      filteredData = pagedPlaces.map((card, index) => (
+        <Card
+          isFavorite={favList.includes(card._id)}
+          card={card}
+          key={index}
+          id={card._id}
+        />
+      ));
+    }
+  } else {
+    // If no search term is provided, show cities with page number.
+    filteredData = pagedPlaces.map((card, index) => (
+      <Card
+        isFavorite={favList.includes(card._id)}
+        card={card}
+        key={index}
+        id={card._id}
+      />
+    ));
   }
   //add new city button
   const toggleAddCityCard = () => {
