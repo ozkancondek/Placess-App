@@ -65,6 +65,7 @@ export const Cards = () => {
       ));
     } else {
       // If no cards match the search term, execute the "else" code.
+      window.location.reload();
       filteredData = pagedPlaces.map((card, index) => (
         <Card
           isFavorite={favList.includes(card._id)}
