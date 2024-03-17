@@ -16,11 +16,6 @@ export const Footer = () => {
             <FaRaspberryPi /> Blue<span>Berry</span>
           </h3>
 
-          <p className="footer-links">
-            <a href="/ ">Home</a>- <a href="/about">About</a> -{" "}
-            <a href="/cities">Places</a>
-          </p>
-
           <p className="footer-company-name">BlueBerry © 2024</p>
 
           <div className="footer-icons">
