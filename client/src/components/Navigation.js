@@ -8,7 +8,8 @@ import {
   Dropdown,
   Button,
 } from "react-bootstrap";
-import { FaRaspberryPi, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import { GiElderberry } from "react-icons/gi";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 //bootstrap style import
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -58,13 +59,20 @@ export const Navigation = () => {
       <Container fluid>
         <Navbar.Brand>
           <Nav.Link eventKey="home" className="underline">
-            <FaRaspberryPi
+            <GiElderberry
               style={{
                 width: "50px",
                 height: "50px",
               }}
             />
-            BlueBerry
+            <p
+              style={{
+                marginLeft: "5px",
+                display: "inline",
+              }}
+            >
+              BlueBerry
+            </p>
           </Nav.Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
